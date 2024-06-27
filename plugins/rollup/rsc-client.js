@@ -1,5 +1,4 @@
 import path from 'node:path';
-import fs from 'node:fs';
 
 import { parse } from 'es-module-lexer';
 
@@ -10,7 +9,7 @@ import {
 } from '#constants';
 
 import { clientEntryPoints } from '#globals';
-import { ensureFileExist } from '#utils';
+import { ensureFileExist, clientManifestDB } from '#utils';
 
 /**
  * @typedef {{manifest: string}} RCSClientPluginOptions
@@ -46,10 +45,7 @@ export default function rscClient(
     async generateBundle(_options, bundle) {
       ensureFileExist(clientManifestPath);
 
-      /**
-       * @type {Record<string, {id: string, name: string, chunks: Array<string>, async: boolean}>}
-       */
-      const clientManifest = {};
+      clientManifestDB.data = {};
 
       for (const [fileName, chunkOrAsset] of Object.entries(bundle)) {
         if (chunkOrAsset.type === 'chunk') {
@@ -60,7 +56,7 @@ export default function rscClient(
           for (const exp of exports) {
             const key = filePath + exp.n;
 
-            clientManifest[key] = {
+            clientManifestDB.data[key] = {
               id: `/build/${path.relative(BUILD_DIR, filePath)}`,
               name: exp.n,
               chunks: [],
@@ -102,10 +98,7 @@ ${exp.ln}.$$typeof = Symbol.for("react.client.reference");`;
         }
       }
 
-      fs.writeFileSync(clientManifestPath, JSON.stringify(clientManifest), {
-        encoding: 'utf-8',
-        flag: 'w'
-      });
+      await clientManifestDB.write();
     }
   };
 }
