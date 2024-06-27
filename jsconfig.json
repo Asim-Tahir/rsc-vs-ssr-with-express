@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "#plugins/*": [
+        "./plugins/*/index.js"
+      ],
+      "#app/*": [
+        "./src/app/*.jsx",
+      ],
+      "#client/*": [
+        "./src/client/*.jsx",
+        "./src/client/*.css"
+      ],
+      "#server/*": [
+        "./src/server/*.js"
+      ],
+      "#constants": [
+        "./src/constants/index.js"
+      ],
+      "#utils": [
+        "./src/utils/index.js",
+      ],
+      "#globals": [
+        "./src/globals.js"
+      ],
+      "#build/*": [
+        "./build/*.js",
+        "./build/*.json"
+      ]
+    },
+  },
+  "include": [
+    "./*.config.js",
+    "./src/**/*.js",
+    "./src/types/**/*.ts"
+  ],
+  "exclude": [
+    "build",
+    "dist"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "name": "rsc-vs-ssr-with-express",
+  "version": "0.0.1",
+  "description": "Compare React Server Components(RSC) and Server Side Rendering(SSR) with express web server.",
+  "type": "module",
+  "imports": {
+    "#plugins/*": "./plugins/*/index.js",
+    "#app/*": "./src/app/*.jsx",
+    "#client/*": [
+      "./src/client/*.jsx",
+      "./src/client/*.css"
+    ],
+    "#server/*": "./src/server/*.js",
+    "#constants": "./src/constants/index.js",
+    "#utils": "./src/utils/index.js",
+    "#globals": "./src/globals.js",
+    "#build/*": "./build/*"
+  },
+  "scripts": {
+    "server:dev": "cross-env NODE_ENV=development nodemon -- --conditions=react-server src/server/",
+    "server:prod": "cross-env NODE_ENV=production node --conditions=react-server src/server/",
+    "build:dev": "cross-env NODE_ENV=development rollup -c -w --watch.onEnd=\"nodemon --conditions=react-server src/server/\"",
+    "build:prod": "cross-env NODE_ENV=production rollup -c",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "es-module-lexer": "^1.5.3",
+    "esbuild": "^0.21.5",
+    "express": "^4.19.2",
+    "picocolors": "^1.0.1",
+    "react": "18.3.0-next-3706edb81-20230308",
+    "react-dom": "18.3.0-next-3706edb81-20230308",
+    "react-error-boundary": "^4.0.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/eslint-parser": "^7.24.7",
+    "@babel/plugin-syntax-import-attributes": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@eslint/js": "^9.5.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-eslint": "^9.0.5",
+    "@rollup/plugin-html": "^1.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@swc/core": "^1.6.5",
+    "@types/eslint": "^8.56.10",
+    "@types/eslint__eslintrc": "^2.1.1",
+    "@types/eslint__js": "^8.42.3",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.6",
+    "consola": "^3.2.3",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jsdoc": "^48.5.0",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-unicorn": "^54.0.0",
+    "magic-string": "^0.30.10",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.2",
+    "react-server-dom-webpack": "0.0.0-experimental-41b4714f1-20230328",
+    "rollup": "^4.18.0",
+    "rollup-plugin-import-css": "^3.5.0",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.14.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
