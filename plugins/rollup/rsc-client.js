@@ -9,7 +9,8 @@ import {
 } from '#constants';
 
 import { clientEntryPoints } from '#globals';
-import { ensureFileExist, clientManifestDB } from '#utils';
+import { ensureFileExist } from '#utils';
+import { clientManifestDB } from '#server/db';
 
 /**
  * @typedef {{manifest: string}} RCSClientPluginOptions
@@ -87,13 +88,6 @@ ${exp.ln}.$$typeof = Symbol.for("react.client.reference");`;
 
             // Update the chunk content
             chunkOrAsset.code = newContents;
-
-            // // Write the modified file to the filesystem
-            // this.emitFile({
-            //   type: 'asset',
-            //   fileName: `components/${fileName}`,
-            //   source: newContents
-            // });
           }
         }
       }

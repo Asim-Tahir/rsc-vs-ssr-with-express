@@ -1,21 +1,26 @@
 import React from 'react';
 
-import { getAll } from '#server/data/db';
+import { albumDB } from '#server/db';
 
 import Like from './Like.jsx';
 
 export default async function Albums() {
-  const albums = await getAll();
+  await albumDB.read();
+  const albums = albumDB.data;
 
   return (
     <ul>
-      {albums.map((a) => (
-        <li key={a.id} className="flex gap-2 items-center mb-2">
-          <img className="w-20 aspect-square" src={a.cover} alt={a.title} />
+      {albums.map((album) => (
+        <li key={album.id} className="flex gap-2 items-center mb-2">
+          <img
+            className="w-20 aspect-square"
+            src={album.cover}
+            alt={`${album.title} - ${album.artist}`}
+          />
           <div>
-            <h3 className="text-xl">{a.title}</h3>
-            <p>{a.songs.length} songs</p>
-            <Like />
+            <h3 className="text-xl">{album.title} - {album.artist}</h3>
+            <p>{album.songs.length} songs</p>
+            <Like album={album} />
           </div>
         </li>
       ))}

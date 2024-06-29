@@ -27,7 +27,7 @@
         "./src/client/*.css"
       ],
       "#server/*": [
-        "./src/server/*.js"
+        "./src/server/*/index.js",
       ],
       "#constants": [
         "./src/constants/index.js"
@@ -40,17 +40,16 @@
       ],
       "#build/*": [
         "./build/*.js",
-        "./build/*.json"
       ]
     },
   },
-  "include": [
-    "./*.config.js",
-    "./src/**/*.js",
-    "./src/types/**/*.ts"
-  ],
+  // "include": [
+  //   "*.config.js",
+  //   "src/**/*.js",
+  //   "src/**/*.jsx",
+  //   "src/**/*.d.ts"
+  // ],
   "exclude": [
     "build",
-    "dist"
   ]
 }

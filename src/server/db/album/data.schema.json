@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/album.schema.json",
+  "title": "Albums",
+  "type": "array",
+  "default": [],
+  "items": {
+    "title": "Album Item",
+    "type": "object",
+    "required": [
+      "id",
+      "artist",
+      "title",
+      "cover",
+      "songs"
+    ],
+    "properties": {
+      "id": {
+        "title": "Album id",
+        "type": "string",
+        "examples": [
+          "glass-animals-how-to-be",
+          "bjork-post"
+        ]
+      },
+      "artist": {
+        "title": "Album artist",
+        "type": "string",
+        "examples": [
+          "Björk",
+          "Glass Animals"
+        ]
+      },
+      "title": {
+        "title": "Album title",
+        "type": "string",
+        "examples": [
+          "Post",
+          "How To Be A Human Being"
+        ]
+      },
+      "cover": {
+        "title": "Album cover image",
+        "type": "string",
+        "examples": [
+          "https://i.discogs.com/nKIGMO-FhgjIZAxpTKIx__vLsrg6XTEUEbeMXtgnJMs/rs:fit/g:sm/q:90/h:581/w:588/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMjQ4/MS0xMjMyMTQ2Nzgy/LmpwZWc.jpeg",
+          "https://i.discogs.com/H-kC9IIS7dglokcAXmfrRHji0roeA3SMxrNFr9MtBzQ/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg5NTM0/NzAtMTQ3MjE0NTUx/My03NjA2LmpwZWc.jpeg"
+        ]
+      },
+      "likes": {
+        "title": "Album like count",
+        "type": "integer",
+        "examples": [
+          21,
+          42
+        ]
+      },
+      "songs": {
+        "title": "Songs in Album",
+        "type": "array",
+        "items": {
+          "title": "Song",
+          "type": "object",
+          "required": [
+            "title",
+            "duration"
+          ],
+          "properties": {
+            "title": {
+              "title": "Song title",
+              "type": "string",
+              "examples": [
+                "Pork Soda",
+                "Mama's Gun"
+              ]
+            },
+            "duration": {
+              "title": "Song duration",
+              "type": "string",
+              "examples": [
+                "4:13",
+                "3:52"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,10 @@
-import { JSONFilePreset } from 'lowdb/node';
-
-import { CLIENT_MANIFEST_PATH } from '#constants';
+import { randomBytes } from 'node:crypto';
 
 /**
- * @typedef {{id: string, name: string, chunks: Array<string>, async: boolean}} ClientManifest
- * @type {import('lowdb').Low<Record<string, ClientManifest>>}
+ * Generate random 6 digit id
+ * @example "fcbfb2"
+ * @returns {string}
  */
-export const clientManifestDB = await JSONFilePreset(CLIENT_MANIFEST_PATH, {});
+export function generateId() {
+  return randomBytes(3).toString('hex');
+}

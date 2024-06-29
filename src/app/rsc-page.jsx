@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 
 import Albums from './components/Albums.jsx';
 
-export default async function Page() {
+export default async function RSCPage() {
   return (
     <>
       <h1 className="text-3xl mb-3">Albums:</h1>

@@ -5,6 +5,9 @@ import { renderToString } from 'react-dom/server';
 import pico from 'picocolors';
 import { consola } from 'consola';
 
+import { SERVER_ORIGIN, SERVER_PORT } from '#constants';
+import { albumRouter } from '#server/router';
+
 import clientManifest from '#build/client/client.manifest.json' with { type: 'json' };
 
 const app = express();
@@ -85,15 +88,11 @@ app.get('/ssr', async (req, res) => {
 </html>`);
 });
 
-const PORT = 4000;
+app.use('/api/albums', albumRouter);
 
 app
-  .listen(PORT, async () => {
-    // await build();
-
-    consola.success(
-      `Server is running on ${pico.dim(`http://localhost:${PORT}`)}`
-    );
+  .listen(SERVER_PORT, async () => {
+    consola.success(`Server is running on ${pico.dim(SERVER_ORIGIN)}`);
   })
   .on('error', (error) => {
     // @ts-expect-error `Property 'syscall' does not exist on type 'Error'`
@@ -101,7 +100,9 @@ app
       throw error;
     }
     const isPipe = (portOrPipe) => Number.isNaN(portOrPipe);
-    const bind = isPipe(PORT) ? 'Pipe ' + PORT : 'Port ' + PORT;
+    const bind = isPipe(SERVER_PORT)
+      ? 'Pipe ' + SERVER_PORT
+      : 'Port ' + SERVER_PORT;
     // @ts-expect-error `Property 'code' does not exist on type 'Error'`
     switch (error.code) {
       case 'EACCES':
