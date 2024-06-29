@@ -7,7 +7,6 @@ import tseslint from 'typescript-eslint';
 import globals from 'globals';
 
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
-import unicorn from 'eslint-plugin-unicorn';
 import jsdoc from 'eslint-plugin-jsdoc';
 
 import * as babelParser from '@babel/eslint-parser/experimental-worker';
@@ -22,7 +21,6 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended
 });
 
-/** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigFile} */
 export default tseslint.config(
   {
     ignores: ['.*', '**/*.json', '**/*.css', 'build/**/*', 'node_modules/**/*']
@@ -37,16 +35,6 @@ export default tseslint.config(
       parser: babelParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module'
-      }
-    },
-    extends: [jsdoc.configs['flat/recommended']],
-    plugins: {
-      unicorn: Array.isArray(unicorn.configs['flat/recommended'].plugins)
-        ? compat.plugins(...unicorn.configs['flat/recommended'].plugins)
-        : unicorn.configs['flat/recommended'].plugins.unicorn
     },
     rules: {
       'jsdoc/require-jsdoc': 'off',
@@ -68,7 +56,7 @@ export default tseslint.config(
       globals: {
         ...globals.node,
         ...globals.nodeBuiltin,
-        ...globals.builtin,
+        ...globals.builtin
       }
     }
   },
