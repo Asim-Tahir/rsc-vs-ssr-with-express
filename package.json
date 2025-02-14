@@ -30,7 +30,7 @@
     "cross-env": "^7.0.3",
     "es-module-lexer": "^1.5.3",
     "esbuild": "^0.21.5",
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "lowdb": "^7.0.1",
     "picocolors": "^1.0.1",
     "react": "18.3.0-next-3706edb81-20230308",
