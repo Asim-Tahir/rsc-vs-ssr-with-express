@@ -50,7 +50,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.7",
-    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-terser": "^1.0.0",
     "@swc/core": "^1.6.5",
     "@types/eslint": "^8.56.10",
     "@types/eslint__eslintrc": "^2.1.1",
